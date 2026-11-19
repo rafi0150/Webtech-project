@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — STRIDE</title>
+  <link rel="stylesheet" href="style/mystyle.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="shop.html" class="logo">
+        <span class="stripes"><i></i><i></i><i></i></span> STRIDE
+      </a>
+      <nav class="topnav">
+        <a href="shop.html">← Back to Shop</a>
+      </nav>
+      <div class="top-actions">
+        <div id="adminUserChip"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-shell">
+
+    <!-- STATS -->
+    <div class="stat-grid">
+      <div class="stat"><span>Total Products</span><strong id="statProducts">0</strong></div>
+      <div class="stat"><span>Total Orders</span><strong id="statOrders">0</strong></div>
+      <div class="stat"><span>Revenue</span><strong id="statRevenue">৳0</strong></div>
+      <div class="stat"><span>Pending</span><strong id="statPending">0</strong></div>
+    </div>
+
+    <div class="admin-grid">
+
+      <!-- ============ ADD PRODUCT ============ -->
+      <section class="panel">
+        <div class="panel-head">Add New Product</div>
+        <div class="panel-body">
+          <form id="productForm" novalidate>
+
+            <div class="field">
+              <label for="pName">Product Name</label>
+              <input type="text" id="pName" placeholder="Ultra Boost 23" />
+              <small class="err" data-for="pName"></small>
+            </div>
+
+            <div class="field">
+              <label for="pCategory">Category</label>
+              <select id="pCategory">
+                <option value="Running">Running</option>
+                <option value="Football">Football</option>
+                <option value="Originals">Originals</option>
+                <option value="Apparel">Apparel</option>
+                <option value="Slides">Slides</option>
+                <option value="Accessories">Accessories</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="pPrice">Price (৳)</label>
+              <input type="number" id="pPrice" placeholder="12500" min="1" />
+              <small class="err" data-for="pPrice"></small>
+            </div>
+
+            <div class="field">
+              <label for="pBadge">Badge (optional)</label>
+              <select id="pBadge">
+                <option value="">None</option>
+                <option value="NEW">NEW</option>
+                <option value="SALE">SALE</option>
+                <option value="HOT">HOT</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="pColor">Placeholder Color</label>
+              <div class="color-row">
+                <input type="color" id="pColor" value="#1b1b1b" />
+                <small style="color:var(--muted);font-size:12px">Used if no image URL</small>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="pImage">Image URL (optional)</label>
+              <input type="url" id="pImage" placeholder="https://…" />
+            </div>
+
+            <button type="submit" class="btn-primary">Add Product</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============ PRODUCT LIST ============ -->
+      <section class="panel">
+        <div class="panel-head">Product Inventory (<span id="invCount">0</span>)</div>
+        <div class="admin-list" id="adminProductList"></div>
+      </section>
+
+    </div>
+
+    <!-- ============ ORDERS ============ -->
+    <section class="panel" style="margin-top:26px">
+      <div class="panel-head">Orders</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th><th>Customer</th><th>Items</th>
+              <th>Total</th><th>Date</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- access denied -->
+  <div class="modal show" id="deniedModal" style="display:none">
+    <div class="modal-card">
+      <h3>Access Denied</h3>
+      <p>You need an admin account to open this page.</p>
+      <a href="login.html?redirect=admin.html" class="btn-primary" style="text-decoration:none">Go to Login</a>
+    </div>
+  </div>
+
+  
+  <script src="js/admin.js"></script>
+  
+</body>
+</html>
